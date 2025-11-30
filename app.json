@@ -11,13 +11,24 @@
 
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.olusegunstephen01.Drift"
+      "bundleIdentifier": "com.olusegunstephen01.Drift",
+      "infoPlist": {
+        "NSPhotoLibraryUsageDescription": "This app needs access to your photo library.",
+        "NSPhotoLibraryAddUsageDescription": "This app needs permission to save photos.",
+        "LSSupportsOpeningDocumentsInPlace": true
+      }
     },
     "android": {
+      "permissions": [
+        "READ_EXTERNAL_STORAGE",
+        "WRITE_EXTERNAL_STORAGE",
+        "MANAGE_EXTERNAL_STORAGE"
+      ],
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",
         "foregroundImage": "./assets/images/android-icon-foreground.png",
         "backgroundImage": "./assets/images/android-icon-background.png",
+
         "monochromeImage": "./assets/images/android-icon-monochrome.png"
       },
       "edgeToEdgeEnabled": true,
