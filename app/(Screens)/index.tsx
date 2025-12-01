@@ -1,5 +1,6 @@
 import { styles } from "@/src/constants/Styles";
 import { Categories } from "@/src/libs/Categories";
+import { JoinConnection } from "@/src/utils/Joinconnection";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { Image, ImageBackground } from "expo-image";
 import React from "react";
@@ -28,6 +29,9 @@ const Header = () => {
 /* -------------------------------------------------------------------------- */
 /*     Send and Receive Buttons (Start Connection)                             */
 const Startconnection = () => {
+  function Joinconnecion() {
+    JoinConnection();
+  }
   return (
     <View>
       <ImageBackground
@@ -84,6 +88,7 @@ const Startconnection = () => {
               shadowOpacity: 0.1,
               elevation: 1,
             }}
+            onPress={Joinconnecion}
           >
             <Text className=" text-lg font-semibold">Receive</Text>
             <FontAwesome name="download" size={22} />
