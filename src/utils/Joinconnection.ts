@@ -6,6 +6,7 @@ let connected = false;
 
 export const JoinConnection = () => {
   const socket = dgram.createSocket("udp4");
+
   //   console.log(
   //     "Model:",
   //     Device.modelName,
@@ -21,9 +22,8 @@ export const JoinConnection = () => {
     if (connected) return;
     const message = JSON.parse(msg.toString());
     // console.log(`📥 Message from ${rinfo.address}:`, message);
-
     if (message.type === "Send/Create") {
-      console.log("🔗 Sender found! Joining connection...");
+      // console.log("🔗 Sender found! Joining connection...");
       connected = true;
 
       // Send acknowledgment back
@@ -43,6 +43,7 @@ export const JoinConnection = () => {
         }
       );
     }
+    e;
   });
 
   // Bind UDP and enable broadcast

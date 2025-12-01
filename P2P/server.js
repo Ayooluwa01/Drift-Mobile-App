@@ -12,6 +12,7 @@ socket.bind(broadcastport, () => {
 // Receive Acknowledgment,Request to Join message
 socket.on("message", (msg, rinfo) => {
   const message = msg.toString;
+  console.log(message);
   if ((message.type = "acknowledge")) {
     console.log(`${message.model} trying to Join`);
     console.log(`${rinfo.address} has joined coonnection`);
