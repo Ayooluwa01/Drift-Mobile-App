@@ -1,12 +1,14 @@
 import { styles } from "@/src/constants/Styles";
 import { Categories } from "@/src/libs/Categories";
+import { fetchAllMedia } from "@/src/utils/FetchMedia";
 import { JoinConnection } from "@/src/utils/Joinconnection";
+import { useMediaStore } from "@/src/Zustand/Mediastore";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import { Image, ImageBackground } from "expo-image";
 import LottieView from "lottie-react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   FlatList,
   StyleSheet,
@@ -204,6 +206,26 @@ const renderItems = () => {
 /* -------------------------------------------------------------------------- */
 
 export default function HomeScreen() {
+  const setImages = useMediaStore(
+    (state: { setImages: any }) => state.setImages
+  );
+  const setVideos = useMediaStore(
+    (state: { setVideos: any }) => state.setVideos
+  );
+  const setAudios = useMediaStore(
+    (state: { setAudios: any }) => state.setAudios
+  );
+
+  useEffect(() => {
+    (async () => {
+      const { images, videos, audios } = await fetchAllMedia();
+      setImages(images);
+      setVideos(videos);
+      setAudios(audios);
+      console.log("Media loaded:", images.length, videos.length, audios.length);
+    })();
+  }, []);
+
   return (
     <SafeAreaView
       style={{ flex: 1, backgroundColor: styles.colors.primaryLight }}

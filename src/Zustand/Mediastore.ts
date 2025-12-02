@@ -1,5 +1,4 @@
-// src/store/mediaStore.ts
-import create from "zustand";
+import { create } from "zustand";
 
 interface MediaState {
   images: any[];
@@ -10,7 +9,7 @@ interface MediaState {
   setAudios: (items: any[]) => void;
 }
 
-export const useMediaStore = create<MediaState>((set) => ({
+export const useMediaStore = create<MediaState>((set: any) => ({
   images: [],
   videos: [],
   audios: [],
