@@ -17,7 +17,7 @@ export async function fetchMedia(type: "audio" | "video" | "photo") {
   }
 
   const assets = await MediaLibrary.getAssetsAsync({
-    first: 9999,
+    first: 10,
     mediaType: [type],
     sortBy: MediaLibrary.SortBy.creationTime,
   });

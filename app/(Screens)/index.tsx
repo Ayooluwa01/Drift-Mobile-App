@@ -1,3 +1,4 @@
+import { Categoryitemlist } from "@/src/components/Reusables/Categoryitems";
 import { styles } from "@/src/constants/Styles";
 import { Categories } from "@/src/libs/Categories";
 import { fetchAllMedia } from "@/src/utils/FetchMedia";
@@ -17,7 +18,6 @@ import {
   View,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-
 /* -------------------------------------------------------------------------- */
 /*                                   Header                                   */
 const Header = () => {
@@ -30,8 +30,8 @@ const Header = () => {
         marginTop: 8,
       }}
     >
-      {/* <View>
-        <Text className="text-lg font-semibold">History</Text>
+      {/* <View className="absolute z-10 top-0 left-7">
+        <Driftlogo height={120} width={120} />
       </View> */}
 
       <View className="right-7 absolute">
@@ -164,6 +164,9 @@ export const Startconnection = () => {
 /* -------------------------------------------------------------------------- */
 /*                               Categories list                              */
 const renderItems = () => {
+  function Togglecategoryitems(item) {
+    console.log(item.Name);
+  }
   return (
     <View style={{ paddingBottom: 30, marginTop: 6 }}>
       <View
@@ -192,6 +195,7 @@ const renderItems = () => {
               style={{
                 backgroundColor: item.color,
               }}
+              onPress={() => Togglecategoryitems(item)}
             >
               <FontAwesome name={item.Icon} size={26} />
             </TouchableOpacity>
@@ -203,6 +207,14 @@ const renderItems = () => {
     </View>
   );
 };
+/* -------------------------------------------------------------------------- */
+
+/* -------------------------------------------------------------------------- */
+/*                               Flatlistfooter                               */
+const Categoryitems = () => {
+  return <Categoryitemlist />;
+};
+
 /* -------------------------------------------------------------------------- */
 
 export default function HomeScreen() {
@@ -222,7 +234,6 @@ export default function HomeScreen() {
       setImages(images);
       setVideos(videos);
       setAudios(audios);
-      console.log("Media loaded:", images.length, videos.length, audios.length);
     })();
   }, []);
 
@@ -234,7 +245,7 @@ export default function HomeScreen() {
 
       <FlatList
         ListHeaderComponent={<Startconnection />}
-        ListFooterComponent={<View style={{ height: 40 }} />}
+        ListFooterComponent={<Categoryitems />}
         data={[1]}
         renderItem={renderItems}
         style={{ backgroundColor: "#fff", flex: 1 }}
