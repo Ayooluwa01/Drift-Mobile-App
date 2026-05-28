@@ -1,2 +1,9 @@
 import { create } from "zustand";
-export const activecategories = create((set) => ({}));
+interface cats {
+  activecategories: string;
+  setactivecategories: (items: any) => void;
+}
+export const activecategories = create<cats>((set) => ({
+  activecategories: "",
+  setactivecategories: (items: any) => set({ activecategories: items }),
+}));

@@ -3,6 +3,7 @@ import { styles } from "@/src/constants/Styles";
 import { Categories } from "@/src/libs/Categories";
 import { fetchAllMedia } from "@/src/utils/FetchMedia";
 import { JoinConnection } from "@/src/utils/Joinconnection";
+import { activecategories } from "@/src/Zustand/Activecategory";
 import { useMediaStore } from "@/src/Zustand/Mediastore";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
@@ -164,8 +165,12 @@ export const Startconnection = () => {
 /* -------------------------------------------------------------------------- */
 /*                               Categories list                              */
 const renderItems = () => {
+  const setactivecategories = activecategories(
+    (state) => state.activecategories
+  );
+
   function Togglecategoryitems(item) {
-    console.log(item.Name);
+    setactivecategories(item.Name);
   }
   return (
     <View style={{ paddingBottom: 30, marginTop: 6 }}>
